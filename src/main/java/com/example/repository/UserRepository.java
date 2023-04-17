@@ -13,8 +13,10 @@ import com.example.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-//	User findByNo(int no);
+	// query method
+	User findByNo(int no);
 	
+	// native query
 	@Query(name = "User.findUserBySiteid", nativeQuery = true)
 	List<Map<String, Object>> findUserBySiteid(@Param("siteid") String siteid);
 }
