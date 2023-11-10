@@ -23,26 +23,32 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
 
 	private final UserRepository userRepo;
-	
+
 	@PostMapping("/ping")
 	@Operation(summary = "템플릿 rest api", description = "템플릿 rest api를 출력합니다.")
 	public User ping() {
-		User user = userRepo.findByNo(1);
+		//User user = userRepo.findByNo(1);
 		
-		return user;
+		return null;
+	}
+
+	@PostMapping("/ping2")
+	public Map<String, Object> ping2() {
+		log.info("PASS!!");
+		return Map.of("code", "SUCCESS");
 	}
 	
-	@PostMapping("/native-query")
-	@Operation(summary = "네이티브 쿼리", description = 
-			  "    		select \r\n"
-			+ "    			count(*) as cnt\r\n"
-			+ "    			, userkind as userkind\r\n"
-			+ "			from t_user \r\n"
-			+ "			where siteid = ?\r\n"
-			+ "			group by userkind")
-	public List<Map<String, Object>> nq() {
-		var items = userRepo.findUserBySiteid("base");
+	// @PostMapping("/native-query")
+	// @Operation(summary = "네이티브 쿼리", description = 
+	// 		  "    		select \r\n"
+	// 		+ "    			count(*) as cnt\r\n"
+	// 		+ "    			, userkind as userkind\r\n"
+	// 		+ "			from t_user \r\n"
+	// 		+ "			where siteid = ?\r\n"
+	// 		+ "			group by userkind")
+	// public List<Map<String, Object>> nq() {
+	// 	var items = userRepo.findUserBySiteid("base");
 		
-		return items;
-	}
+	// 	return items;
+	// }
 }
